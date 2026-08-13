@@ -36,15 +36,15 @@ function NewTask({ onAddTask, onCancel }) {
     <form id="new-task-form" onSubmit={submitHandler}>
       <p>
         <label htmlFor="title">Title</label>
-        <input type="text" id="title" ref={titleRef} />
+        <input data-cy="title" type="text" id="title" ref={titleRef} />
       </p>
       <p>
         <label htmlFor="summary">Summary</label>
-        <textarea id="summary" rows="5" ref={summaryRef} />
+        <textarea data-cy="summary" id="summary" rows="5" ref={summaryRef} />
       </p>
       <p>
         <label htmlFor="category">Category</label>
-        <select id="category" ref={categoryRef} defaultValue="moderate">
+        <select data-cy="category" id="category" ref={categoryRef} defaultValue="moderate">
           <option value="urgent">🚨 Urgent</option>
           <option value="important">🔴 Important</option>
           <option value="moderate">🔵 Moderate</option>
@@ -57,8 +57,8 @@ function NewTask({ onAddTask, onCancel }) {
         </p>
       )}
       <p className="actions">
-        <button type="button" onClick={onCancel}>Cancel</button>
-        <button type="submit">Add Task</button>
+        <button data-cy="cancel-button"  type="button" onClick={onCancel}>Cancel</button>
+        <button data-cy="add-task-button" type="submit">Add Task</button>
       </p>
     </form>
   );
