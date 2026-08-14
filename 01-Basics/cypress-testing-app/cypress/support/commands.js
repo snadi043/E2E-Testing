@@ -23,3 +23,17 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+/// <reference types="Cypress" />
+
+// Creating custom commands to optimize the code repetition in the test cases.
+Cypress.Commands.add('getBackdrop', () => { cy.get('.backdrop')});
+Cypress.Commands.add('getModal', () => {cy.get('.modal')})
+
+Cypress.Commands.addQuery('getDOMEl', (id) => {
+    const getFn = cy.now('get', `[data-cy="{id}"]`);
+    return () => {
+        console.log(getFn);
+        return getFn;
+    };
+});
