@@ -1,6 +1,8 @@
+/// <reference types="Cypress" />
+
 describe('Simulating the process of "Add Task" from the homepage and closing it.', () => {
     it('should render the homepage and when clicked on the "Add Task" button should open the Modal.', () => {
-        cy.visit('http://localhost:5173');
+        cy.visit('/');
         cy.get('#task-control button').click();
         cy.get('#root').children('dialog');
         cy.get('.backdrop').click({force: true});
@@ -9,13 +11,13 @@ describe('Simulating the process of "Add Task" from the homepage and closing it.
     });
 
     it('should close the modal when the cancel button is clicked.', () => {
-        cy.visit('http://localhost:5173');
+        cy.visit('/');
         cy.get('[data-cy="start-add-task-button"]').click()
         cy.get('.modal').find('[data-cy="cancel-button"]').click()
     });
 
     it('should be able to add a new task with all the input fields typed and once submited should display the task on the index page.', () => {
-        cy.visit('http://localhost:5173');
+        cy.visit('/');
         cy.get('[data-cy="start-add-task-button"]').click()
 
         cy.get('.modal').contains('Title')
@@ -39,14 +41,14 @@ describe('Simulating the process of "Add Task" from the homepage and closing it.
     });
 
     it('should render the error message element on the index page if add-task is submmitted empty.', () => {
-        cy.visit('http://localhost:5173');
+        cy.visit('/');
         cy.get('button').contains('Add Task').click();
         cy.get('.modal').find('[data-cy="add-task-button"]').click()
         cy.get('p.error-message').contains('Please provide values for task title, summary and category!');
     });
 
     it('should allow to filter the tasks from the index page and display them accordingly.', () => {
-        cy.visit('http://localhost:5173');
+        cy.visit('/');
 
         cy.get('[data-cy="start-add-task-button"]').click()
 
@@ -66,7 +68,7 @@ describe('Simulating the process of "Add Task" from the homepage and closing it.
     });
 
     it('should render all the list of tasks and in the order as expected.', () => {
-        cy.visit('http://localhost:5173');
+        cy.visit('/');
         
         cy.get('[data-cy="start-add-task-button"]').click()
 

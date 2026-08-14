@@ -2,12 +2,12 @@
 
 describe('Tests for the About Page', () => {
     it('should render the About page and have the About Us header.', () => {
-        cy.visit('http://localhost:5173/about');
+        cy.visit('/about');
         cy.get('header.center').first().contains('About Us');
     });
 
     it('should have the form with the heading Contact Us.', () => {
-        cy.visit('http://localhost:5173/about');
+        cy.visit('/about');
         cy.get('h2.center').contains('Contact Us');
         cy.get('label').should('have.attr', 'for', 'message').contains('Your Message');
         cy.get('#message').type('Contact Us Form Message.');

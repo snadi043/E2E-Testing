@@ -20,15 +20,13 @@
 // So, basically every testing file has a test suite which is in the simple terms binds group of individual test cases under one block.
 // Every test suite starts with "describe" method in which you write individual test cases with "cy.{how-you-want-accessing-the-element}""
 
-/// <reference types="cypress"/> 
-
-// import {cy, describe, it} from 'cypress';
+/// <reference types="Cypress"/> 
 
 describe('basic first test', () => {
   it('should render the site with the port 5173 on the localhost.', () => {
-    cy.visit('http://localhost:5173/');
+    cy.visit('/');
     cy.get('li').should('have.length', 6);
     cy.get('li').children('span').should('contain', 'Learn how to install & start Cypress');
     cy.get('li').children('span').should('contain', 'Dive into more complex problems - e.g., user authentication testing');
-  })
+  });
 })
