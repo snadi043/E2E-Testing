@@ -39,10 +39,39 @@ describe('Tests for the About Page', () => {
             expect(el[0]).to.have.attr('disabled')
             expect(el[0]).to.have.text('Sending...')
         });
-
-
-
-
-
     });
+
+    it('should render the validation text on the input fields when an empty form is submitted.', () => {
+        cy.visit('http://localhost:5173/about');
+        
+        cy.get('#message').then((el) => {
+            expect(el.text()).to.be.empty;
+        });
+        cy.get('#name').then((el) => {
+            expect(el.text()).to.be.empty;
+        });
+        cy.get('#email').then((el) => {
+            expect(el.text()).to.be.empty;
+        });
+        cy.get('[data-cy="contact-btn-submit"]').as('submitBtn');
+
+        cy.get('@submitBtn').click().then((el) => {
+            expect(el).not.to.have.attr('disabled');
+            expect(el.text()).contains('Send Message');
+        });
+        // cy.get('body').contains('Please fill out this field.');
+    });
+
+    it('should highlight the styles of validation with the expected property added to the element.', () => {
+        cy.visit('http://localhost:5173/about');
+
+        cy.get('#message').click();
+        cy.get('#name').click();
+        cy.get('[data-cy="contact-btn-submit"]').click();
+        cy.get('form').children().then((el) => {
+            expect(el[0]).to.have.attr('class').contains('invalid');
+            expect(el[1].children[0]).to.have.attr('class').contains('invalid');
+        });
+
+    })
 });
