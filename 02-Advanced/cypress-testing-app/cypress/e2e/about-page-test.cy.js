@@ -41,10 +41,5 @@ describe('Tests for the About Page', () => {
             expect(el[0]).to.have.attr('disabled')
             expect(el[0]).to.have.text('Sending...')
         });
-
-
-
-
-
     });
 });
