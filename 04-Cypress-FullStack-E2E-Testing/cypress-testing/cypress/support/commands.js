@@ -50,3 +50,13 @@ Cypress.on('uncaught:exception', (err) => {
     return false;
   }
 });
+
+Cypress.Commands.add('login', () => {
+  cy.visit('/login');
+      cy.get('[data-cy="auth-email"]').click();
+      cy.get('[data-cy="auth-email"]').type('test@testing.com');
+      cy.get('[data-cy="auth-password"]').click();
+      cy.get('[data-cy="auth-password"]').type('testing321');
+      cy.get('[data-cy="auth-submit"]').click();
+      cy.location('pathname').go('back').visit('/takeaways');
+})
